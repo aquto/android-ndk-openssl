@@ -1,0 +1,12 @@
+This is a version of the official Android OpenSSL sources slightly modified
+to be used as static library within the Android NDK.
+
+It is intended to be used as subdirectory of a project's jni directory, it
+just has to be included from the top Android.mk.  Afterwards it can be built
+as part of the project directly with $NDK/ndk-build.
+
+To update it to the latest upstream version add the following remote:
+
+  git remote add upstream https://android.googlesource.com/platform/external/openssl
+
+NOTE: This branch might get rebased!
