@@ -44,30 +44,3 @@ include $(LOCAL_PATH)/Crypto-config-target.mk
 include $(LOCAL_PATH)/android-config.mk
 include $(BUILD_SHARED_LIBRARY)
 
-#######################################
-# host shared library
-include $(CLEAR_VARS)
-LOCAL_SHARED_LIBRARIES := $(log_shared_libraries)
-LOCAL_CFLAGS += -DPURIFY
-LOCAL_LDLIBS += -ldl
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE := libcrypto-host
-LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/android-config.mk $(LOCAL_PATH)/Crypto.mk
-LOCAL_MULTILIB := both
-include $(LOCAL_PATH)/Crypto-config-host.mk
-include $(LOCAL_PATH)/android-config.mk
-include $(BUILD_HOST_SHARED_LIBRARY)
-
-########################################
-# host static library, which is used by some SDK tools.
-
-include $(CLEAR_VARS)
-LOCAL_SHARED_LIBRARIES := $(log_shared_libraries)
-LOCAL_CFLAGS += -DPURIFY
-LOCAL_LDLIBS += -ldl
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE := libcrypto_static
-LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/android-config.mk $(LOCAL_PATH)/Crypto.mk
-include $(LOCAL_PATH)/Crypto-config-host.mk
-include $(LOCAL_PATH)/android-config.mk
-include $(BUILD_HOST_STATIC_LIBRARY)
