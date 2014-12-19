@@ -16,4 +16,11 @@ include $(LOCAL_PATH)/android-config.mk
 # Replace cflags with static-specific cflags so we dont build in libdl deps
 LOCAL_CFLAGS_32 := $(openssl_cflags_static_32)
 LOCAL_CFLAGS_64 := $(openssl_cflags_static_64)
+ifeq ($(strip $(TARGET_IS_64_BIT)),true)
+  LOCAL_CFLAGS += $(LOCAL_CFLAGS_64)
+else
+  LOCAL_CFLAGS += $(LOCAL_CFLAGS_32)
+endif
+LOCAL_CFLAGS += $(LOCAL_CFLAGS_$(TARGET_ARCH))
+LOCAL_SRC_FILES += $(LOCAL_SRC_FILES_$(TARGET_ARCH))
 include $(BUILD_STATIC_LIBRARY)
